@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Cleanups | ShoreSquad</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Past Cleanups Page Styles */
+        .cleanup-form {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(30,144,255,0.07);
+            padding: 1.2em 1em 1em 1em;
+            margin-bottom: 2em;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cleanup-form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3em;
+            margin-bottom: 1em;
+        }
+        .cleanup-form label {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .cleanup-form input {
+            padding: 0.6em 0.8em;
+            border: 1px solid #cce3fa;
+            border-radius: 6px;
+            font-size: 1em;
+            background: #f7fbff;
+            color: var(--text);
+            outline: none;
+            transition: border 0.2s;
+        }
+        .cleanup-form input:focus {
+            border: 1.5px solid var(--primary);
+        }
+        .cleanup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5em;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        .cleanup-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(30,144,255,0.10);
+            padding: 1.2em 1em 1em 1em;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7em;
+            transition: transform 0.25s cubic-bezier(.4,0,.2,1), box-shadow 0.25s cubic-bezier(.4,0,.2,1);
+        }
+        .cleanup-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 6px 18px rgba(30,144,255,0.18);
+        }
+        .cleanup-card-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .cleanup-card-detail {
+            font-size: 1em;
+            color: var(--text);
+        }
+        @media (max-width: 600px) {
+            .cleanup-form {
+                padding: 0.7em 0.3em 0.7em 0.3em;
+            }
+            .cleanup-grid {
+                gap: 0.7em;
+            }
+            .cleanup-card {
+                padding: 0.7em 0.5em 0.7em 0.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Past Cleanups</h1>
+        <nav><a href="index.html" style="color:#fff;text-decoration:underline;">&larr; Back to Home</a></nav>
+    </header>
+    <main>
+        <form id="cleanup-form" class="cleanup-form" autocomplete="off">
+            <h2>Log Past Cleanup</h2>
+            <div class="cleanup-form-row">
+                <label for="cleanup-location">Location Name</label>
+                <input type="text" id="cleanup-location" required maxlength="60" placeholder="e.g. East Coast Park">
+            </div>
+            <div class="cleanup-form-row">
+                <label for="cleanup-date">Date Completed</label>
+                <input type="date" id="cleanup-date" required>
+            </div>
+            <div class="cleanup-form-row">
+                <label for="cleanup-trash">Total Trash Collected (kg)</label>
+                <input type="number" id="cleanup-trash" min="0.1" step="0.1" required placeholder="e.g. 45">
+            </div>
+            <div class="cleanup-form-row">
+                <label for="cleanup-volunteers">Number of Volunteers</label>
+                <input type="number" id="cleanup-volunteers" min="1" max="999" required placeholder="e.g. 12">
+            </div>
+            <button type="submit" class="btn-primary">Add Cleanup Event</button>
+        </form>
+        <section>
+            <h2 style="text-align:center;color:var(--primary);margin-bottom:1em;">Cleanup Event History</h2>
+            <div id="cleanup-grid" class="cleanup-grid"></div>
+        </section>
+    </main>
+    <script>
+    // Past Cleanups JS
+    function getCleanups() {
+        let arr = [];
+        try {
+            arr = JSON.parse(localStorage.getItem('shoreSquadPastCleanups')) || [];
+        } catch (e) { arr = []; }
+        return arr;
+    }
+    function setCleanups(arr) {
+        localStorage.setItem('shoreSquadPastCleanups', JSON.stringify(arr));
+    }
+    function renderCleanups() {
+        const grid = document.getElementById('cleanup-grid');
+        if (!grid) return;
+        const cleanups = getCleanups();
+        grid.innerHTML = '';
+        if (!cleanups.length) {
+            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#888;">No past cleanups logged yet.</div>';
+            return;
+        }
+        cleanups.forEach(ev => {
+            const card = document.createElement('div');
+            card.className = 'cleanup-card';
+            card.innerHTML = `
+                <div class="cleanup-card-title">${escapeHTML(ev.location)}</div>
+                <div class="cleanup-card-detail">Date: <b>${formatDate(ev.date)}</b></div>
+                <div class="cleanup-card-detail">Trash Collected: <b>${Number(ev.trash).toFixed(1)} kg</b></div>
+                <div class="cleanup-card-detail">Volunteers: <b>${Number(ev.volunteers)}</b></div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+    function escapeHTML(str) {
+        return String(str).replace(/[&<>'"]/g, function(tag) {
+            const chars = {'&':'&amp;','<':'&lt;','>':'&gt;','\'':'&#39;','"':'&quot;'};
+            return chars[tag] || tag;
+        });
+    }
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        const d = new Date(dateStr);
+        if (isNaN(d)) return dateStr;
+        return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+    document.getElementById('cleanup-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const location = document.getElementById('cleanup-location').value.trim();
+        const date = document.getElementById('cleanup-date').value;
+        const trash = parseFloat(document.getElementById('cleanup-trash').value);
+        const volunteers = parseInt(document.getElementById('cleanup-volunteers').value, 10);
+        if (!location || !date || isNaN(trash) || trash <= 0 || isNaN(volunteers) || volunteers < 1) return;
+        const arr = getCleanups();
+        arr.unshift({ location, date, trash, volunteers });
+        setCleanups(arr);
+        this.reset();
+        renderCleanups();
+    });
+    renderCleanups();
+    </script>
+</body>
+</html>

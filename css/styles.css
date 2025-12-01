@@ -1,0 +1,615 @@
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header, footer {
+    background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem 1.5rem 1rem;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.10);
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0.2em 0 0.1em 0;
+    letter-spacing: 0.01em;
+}
+h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 1.2em 0 0.7em 0;
+    color: var(--primary);
+}
+h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 1.1em 0 0.6em 0;
+    color: var(--accent);
+}
+p, label, input, button, span, div {
+    font-size: 1rem;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto 2rem auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+section {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.08);
+    margin-bottom: 2rem;
+    padding: 1.5rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 15px;
+    }
+    main {
+        padding: 0.5rem;
+        gap: 1.2rem;
+    }
+    section {
+        padding: 1rem 0.5rem;
+        gap: 0.7rem;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    h2 {
+        font-size: 1.1rem;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Enhanced Buttons */
+.btn-primary, .btn-secondary {
+    border: none;
+    border-radius: 999px;
+    padding: 0.7em 1.5em;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 0.5em;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.10);
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    text-decoration: none;
+    outline: none;
+    background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
+    color: #fff;
+    letter-spacing: 0.01em;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-secondary:hover, .btn-secondary:focus {
+    background: linear-gradient(90deg, var(--accent) 40%, var(--primary) 100%);
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 16px rgba(30,144,255,0.18);
+}
+
+/* Accessibility: High Contrast for Buttons */
+.btn-primary, .btn-secondary {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.10);
+}
+
+/* Improve input contrast */
+input, select, textarea {
+    background: #f7fbff;
+    color: var(--text);
+    border: 1.5px solid #cce3fa;
+    border-radius: 6px;
+    font-size: 1em;
+    outline: none;
+    transition: border 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+    border: 1.5px solid var(--primary);
+    background: #fff;
+}
+
+/* Add spacing between all major sections */
+#map-section, #weather-section, #crew-section, #volunteers-section, #impact-section {
+    margin-bottom: 2.2rem;
+}
+
+/* Ensure all cards and forms have good contrast and spacing */
+.cleanup-card, .volunteer-card, .volunteer-card.alt, #registration-form, #impact-section, #volunteers-section, .cleanup-form {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.08);
+    margin-bottom: 1.2rem;
+    padding: 1.2rem 1rem;
+}
+.cleanup-card {
+    border: 2px solid #eaf6ff;
+}
+.cleanup-card:hover {
+    border: 2px solid var(--primary);
+}
+
+/* Ensure text contrast for accessibility */
+body, p, label, input, button, span, div {
+    color: #22223B;
+}
+.weather-alert.red, .reg-success[style*="background: var(--highlight)"] {
+    color: #fff !important;
+}
+.weather-alert.yellow {
+    color: #22223B !important;
+}
+.weather-alert.green {
+    color: #fff !important;
+}
+/* Past Cleanups Button */
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--text);
+    border: none;
+    border-radius: 6px;
+    padding: 0.7em 1.2em;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5em;
+    box-shadow: 0 2px 8px rgba(255,209,102,0.10);
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+}
+.btn-secondary:hover, .btn-secondary:focus {
+    background: #ffe7a3;
+    color: var(--primary);
+}
+@media (max-width: 600px) {
+    .btn-secondary {
+        font-size: 1em;
+        padding: 0.6em 0.7em;
+    }
+}
+/* Cleanup Impact Styles */
+#impact-section {
+    margin: 1.5em 0 0 0;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.07);
+    padding: 1.2em 1em 1em 1em;
+}
+#impact-section h3 {
+    color: var(--primary);
+    font-size: 1.2em;
+    margin-bottom: 0.7em;
+    font-weight: 700;
+}
+#impact-form label {
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.2em;
+    display: block;
+}
+.impact-row {
+    display: flex;
+    gap: 0.7em;
+    margin-bottom: 1em;
+}
+#trash-weight {
+    flex: 1 1 80px;
+    padding: 0.6em 0.8em;
+    border: 1px solid #cce3fa;
+    border-radius: 6px;
+    font-size: 1em;
+    background: #f7fbff;
+    color: var(--text);
+    outline: none;
+    transition: border 0.2s;
+}
+#trash-weight:focus {
+    border: 1.5px solid var(--accent);
+}
+.impact-progress-container {
+    width: 100%;
+    background: #eaf6ff;
+    border-radius: 8px;
+    height: 36px;
+    margin-bottom: 0.7em;
+    box-shadow: 0 1px 4px rgba(30,144,255,0.04);
+    overflow: hidden;
+}
+.impact-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent) 60%, var(--primary) 100%);
+    border-radius: 8px;
+    width: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1em;
+    transition: width 1s cubic-bezier(.4,0,.2,1);
+    position: relative;
+}
+.impact-progress-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    pointer-events: none;
+}
+.impact-celebration {
+    margin-top: 1em;
+    background: var(--highlight);
+    color: #fff;
+    border-radius: 8px;
+    padding: 0.8em 1em;
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(255,111,97,0.10);
+    animation: pop-celebrate 1s cubic-bezier(.4,0,.2,1);
+}
+@keyframes pop-celebrate {
+    0% { transform: scale(0.7); opacity: 0; }
+    60% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+@media (max-width: 600px) {
+    #impact-section {
+        padding: 0.7em 0.3em 0.7em 0.3em;
+    }
+    .impact-row {
+        flex-direction: column;
+        gap: 0.3em;
+    }
+    .impact-progress-label {
+        font-size: 1em;
+    }
+}
+/* Weather Alert Styles */
+.weather-alert {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 1.2em auto;
+    padding: 1em 1.2em;
+    border-radius: 10px;
+    font-size: 1.15em;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.10);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+    z-index: 10;
+    position: relative;
+}
+.weather-alert.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.weather-alert.red {
+    background: #ff6f61;
+    color: #fff;
+}
+.weather-alert.yellow {
+    background: #ffd166;
+    color: #22223b;
+}
+.weather-alert.green {
+    background: #06d6a0;
+    color: #fff;
+}
+@media (max-width: 600px) {
+    .weather-alert {
+        font-size: 1em;
+        padding: 0.7em 0.5em;
+    }
+}
+/* Volunteers List Styles */
+#volunteers-section {
+    margin: 1.5em 0 0 0;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.07);
+    padding: 1.2em 1em 1em 1em;
+}
+#volunteers-section h3 {
+    color: var(--primary);
+    font-size: 1.2em;
+    margin-bottom: 0.7em;
+    font-weight: 700;
+}
+#volunteer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+}
+.volunteer-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background: #f7fbff;
+    border-radius: 7px;
+    padding: 0.7em 1em;
+    font-size: 1em;
+    box-shadow: 0 1px 4px rgba(30,144,255,0.04);
+    transition: background 0.2s;
+}
+.volunteer-card.alt {
+    background: #eaf6ff;
+}
+.volunteer-name {
+    font-weight: 600;
+    color: var(--primary);
+    flex: 2 1 120px;
+    min-width: 80px;
+}
+.volunteer-group {
+    flex: 1 1 60px;
+    text-align: center;
+}
+.volunteer-date {
+    flex: 1 1 100px;
+    text-align: right;
+    color: var(--accent);
+    font-size: 0.98em;
+}
+@media (max-width: 600px) {
+    #volunteers-section {
+        padding: 0.7em 0.3em 0.7em 0.3em;
+    }
+    .volunteer-card, .volunteer-card.alt {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2em;
+        padding: 0.6em 0.5em;
+    }
+    .volunteer-name, .volunteer-group, .volunteer-date {
+        flex: unset;
+        min-width: 0;
+        text-align: left;
+    }
+}
+/* Registration Form Styles */
+#registration-form {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.07);
+    padding: 1.2em 1em 1em 1em;
+    margin-bottom: 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+#registration-form label {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.1em;
+}
+#registration-form input {
+    padding: 0.6em 0.8em;
+    border: 1px solid #cce3fa;
+    border-radius: 6px;
+    font-size: 1em;
+    background: #f7fbff;
+    color: var(--text);
+    outline: none;
+    transition: border 0.2s;
+}
+#registration-form input:focus {
+    border: 1.5px solid var(--primary);
+}
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7em 1.2em;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5em;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.10);
+    transition: background 0.2s;
+}
+.btn-primary:hover, .btn-primary:focus {
+    background: #156dc1;
+}
+.reg-success {
+    margin-top: 1em;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
+    padding: 0.8em 1em;
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(6,214,160,0.10);
+}
+@media (max-width: 600px) {
+    #registration-form {
+        padding: 0.7em 0.3em 0.7em 0.3em;
+        gap: 0.7em;
+    }
+    .form-row {
+        gap: 0.15em;
+    }
+    .btn-primary {
+        font-size: 1em;
+        padding: 0.6em 0.7em;
+    }
+    .reg-success {
+        font-size: 1em;
+        padding: 0.6em 0.5em;
+    }
+}
+:root {
+    --primary: #1E90FF;      /* Beach Blue */
+    --secondary: #FFD166;    /* Sand Yellow */
+    --accent: #06D6A0;       /* Eco Green */
+    --background: #F7FFF7;   /* Soft White */
+    --text: #22223B;         /* Deep Navy */
+    --highlight: #FF6F61;    /* Coral */
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    background: var(--primary);
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 1rem;
+}
+
+h1, h2 {
+    margin: 0.5em 0;
+}
+
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+section {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.08);
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+}
+
+#map {
+    width: 100%;
+    height: 350px;
+    background: var(--secondary);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.10);
+}
+
+.map-pin-label {
+    position: absolute;
+    left: 50%;
+    top: 16px;
+    transform: translateX(-50%);
+    background: var(--highlight);
+    color: #fff;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(255,111,97,0.15);
+    z-index: 2;
+    pointer-events: none;
+}
+
+#weather, #crew-list {
+    min-height: 80px;
+    background: var(--accent);
+    border-radius: 8px;
+    padding: 1.2rem 1rem 1.2rem 1rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.weather-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin-bottom: 0.7rem;
+}
+
+.weather-item {
+    flex: 1 1 0;
+    background: rgba(255,255,255,0.10);
+    border-radius: 8px;
+    padding: 0.7em 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+}
+
+.weather-label {
+    font-size: 0.98em;
+    font-weight: 600;
+    margin-bottom: 0.2em;
+    letter-spacing: 0.01em;
+}
+
+.weather-value {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0.1em;
+}
+
+.weather-unit {
+    font-size: 1em;
+    opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 0.5rem;
+    }
+    section {
+        padding: 1rem;
+    }
+    #map {
+        height: 220px;
+        min-height: 180px;
+    }
+    .map-pin-label {
+        font-size: 0.95rem;
+        padding: 0.4em 0.7em;
+        top: 10px;
+    }
+    #weather, #crew-list {
+        padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+    }
+    .weather-row {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+    .weather-item {
+	    padding: 0.6em 0.3em;
+    }
+}
