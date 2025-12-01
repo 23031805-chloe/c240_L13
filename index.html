@@ -7,18 +7,93 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <div id="weather-alert" class="weather-alert" style="display:none;"></div>
     <header>
         <h1>ShoreSquad</h1>
         <p>Rally your crew, track weather, and hit the next beach cleanup!</p>
+        <a href="past-cleanups.html" class="btn-secondary" style="margin-top:1em;display:inline-block;">View Past Cleanups</a>
     </header>
     <main>
         <section id="map-section">
-            <h2>Find a Cleanup</h2>
-            <div id="map"></div>
+                        <h2>Find a Cleanup</h2>
+                        <form id="registration-form" autocomplete="off">
+                            <div class="form-row">
+                                <label for="reg-name">Name</label>
+                                <input type="text" id="reg-name" name="name" required maxlength="40" placeholder="Your Name">
+                            </div>
+                            <div class="form-row">
+                                <label for="reg-email">Email</label>
+                                <input type="email" id="reg-email" name="email" required maxlength="60" placeholder="you@email.com">
+                            </div>
+                            <div class="form-row">
+                                <label for="reg-group">Group Size</label>
+                                <input type="number" id="reg-group" name="group" required min="1" max="99" placeholder="1">
+                            </div>
+                            <div class="form-row">
+                                <label for="reg-date">Preferred Date</label>
+                                <input type="date" id="reg-date" name="date" required>
+                            </div>
+                            <button type="submit" class="btn-primary">Sign Up</button>
+                            <div id="reg-success" class="reg-success" style="display:none;"></div>
+                        </form>
+                        <section id="volunteers-section">
+                            <h3>Volunteers Joined (<span id="volunteer-count">0</span>)</h3>
+                            <div id="volunteer-list"></div>
+                        </section>
+                        <section id="impact-section">
+                            <h3>Cleanup Impact</h3>
+                            <form id="impact-form" autocomplete="off">
+                                <label for="trash-weight">Add Trash Collected (kg):</label>
+                                <div class="impact-row">
+                                    <input type="number" id="trash-weight" min="0.1" step="0.1" placeholder="e.g. 2.5" required>
+                                    <button type="submit" class="btn-primary">Add to total</button>
+                                </div>
+                            </form>
+                            <div class="impact-progress-container">
+                                <div class="impact-progress-bar" id="impact-progress-bar">
+                                    <span class="impact-progress-label" id="impact-progress-label">0 / 100 kg</span>
+                                </div>
+                            </div>
+                            <div id="impact-celebration" class="impact-celebration" style="display:none;"></div>
+                        </section>
+                        <div id="map">
+                            <iframe
+                              title="Next Cleanup: Pasir Ris"
+                              src="https://www.google.com/maps?q=1.381497,103.955574&hl=en&z=16&output=embed"
+                              allowfullscreen
+                              loading="lazy"
+                              referrerpolicy="no-referrer-when-downgrade"
+                              style="border:0;width:100%;height:100%;min-height:300px;"
+                            ></iframe>
+                            <div class="map-pin-label">📍 Next Cleanup</div>
+                        </div>
         </section>
         <section id="weather-section">
             <h2>Weather Tracker</h2>
-            <div id="weather"></div>
+            <div id="weather" aria-live="polite">
+                <div class="weather-row">
+                    <div class="weather-item">
+                        <span class="weather-label">Temperature</span>
+                        <span class="weather-value" id="weather-temp">--</span>
+                        <span class="weather-unit">°C</span>
+                    </div>
+                    <div class="weather-item">
+                        <span class="weather-label">Wind</span>
+                        <span class="weather-value" id="weather-wind">--</span>
+                        <span class="weather-unit">km/h</span>
+                    </div>
+                </div>
+                <div class="weather-row">
+                    <div class="weather-item">
+                        <span class="weather-label">UV Index</span>
+                        <span class="weather-value" id="weather-uv">--</span>
+                    </div>
+                    <div class="weather-item">
+                        <span class="weather-label">Sky</span>
+                        <span class="weather-value" id="weather-sky">--</span>
+                    </div>
+                </div>
+            </div>
         </section>
         <section id="crew-section">
             <h2>Your Crew</h2>
@@ -29,5 +104,41 @@
         <p>&copy; 2025 ShoreSquad. Eco-action made fun.</p>
     </footer>
     <script src="js/app.js"></script>
+</body>
+<!-- Tawk.to Live Chat Widget -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/your_property_id/1hxxxxxxx'; // Replace with your Tawk.to property ID
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+// Custom Tawk.to styling and position
+Tawk_API.onLoad = function(){
+    Tawk_API.setAttributes({
+        'welcomeMessage': '👋 Welcome to ShoreSquad! How can we help with your next cleanup?'
+    }, function(error){});
+    // Reposition widget with margin
+    var style = document.createElement('style');
+    style.innerHTML = `
+        #tawkchat-container, .tawk-min-container {
+            right: 18px !important;
+            bottom: 18px !important;
+            left: auto !important;
+            z-index: 9999 !important;
+        }
+        @media (max-width: 600px) {
+            #tawkchat-container, .tawk-min-container {
+                right: 8px !important;
+                bottom: 8px !important;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+};
+</script>
 </body>
 </html>
