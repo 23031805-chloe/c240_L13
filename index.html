@@ -1,144 +1,302 @@
+    <section id="stats-section">
+    <div class="stat-card">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#1e90ff" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm2 3h14l-1.5 12.5a2 2 0 0 1-2 1.5H8.5a2 2 0 0 1-2-1.5L5 9zm5 2v7h2v-7h-2zm4 0v7h2v-7h-2zm-8 0v7h2v-7H6z"/></svg>
+            </div>
+            <div class="stat-value">2500</div>
+            <div class="stat-label">Pounds Collected</div>
+    </div>
+    <div class="stat-card">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#1e90ff" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+            </div>
+            <div class="stat-value">45</div>
+            <div class="stat-label">Beaches Cleaned</div>
+    </div>
+    <div class="stat-card">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#1e90ff" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V20h14v-3.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05C17.16 14.1 19 15.03 19 16.5V20h5v-3.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </div>
+            <div class="stat-value">350</div>
+            <div class="stat-label">Squad Members</div>
+    </div>
+    </section>
+    <section class="stats-section">
+    <div class="stat-card">
+            <div class="stat-value" id="stat-pounds">0</div>
+            <div class="stat-label">Pounds Collected</div>
+    </div>
+    <div class="stat-card">
+            <div class="stat-value" id="stat-beaches">0</div>
+            <div class="stat-label">Beaches Cleaned</div>
+    </div>
+    <div class="stat-card">
+            <div class="stat-value" id="stat-members">0</div>
+            <div class="stat-label">Squad Members</div>
+    </div>
+    </section>
+    <section class="upcoming-section" id="upcoming">
+    <h2>Upcoming Cleanups</h2>
+    <div class="cleanup-cards">
+            <!-- Example Card -->
+            <div class="cleanup-card">
+                <div class="cleanup-date">Dec 10</div>
+                <div class="cleanup-info">
+                    <h3 class="cleanup-title">Pasir Ris Beach Sweep</h3>
+                    <div class="cleanup-meta">
+                        <span class="meta-item"><span class="icon">&#128205;</span> Pasir Ris Beach</span>
+                        <span class="meta-item"><span class="icon">&#128337;</span> 9:00 AM</span>
+                    </div>
+                    <div class="cleanup-avatars">
+                        <div class="avatar" title="Chloe">C</div>
+                        <div class="avatar" title="Alex">A</div>
+                        <div class="avatar" title="Sam">S</div>
+                        <div class="avatar avatar-more">+5</div>
+                    </div>
+                </div>
+                <button class="btn-secondary">Join Squad</button>
+            </div>
+            <!-- Add more .cleanup-card as needed -->
+    </div>
+    </section>
+    <script>
+    // Responsive nav toggle
+    document.getElementById('nav-toggle').onclick = function() {
+            document.querySelector('.nav-menu').classList.toggle('show');
+    };
+    // Example stats (replace with real data)
+    document.getElementById('stat-pounds').textContent = '320';
+    document.getElementById('stat-beaches').textContent = '12';
+    document.getElementById('stat-members').textContent = '48';
+    </script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShoreSquad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id="weather-alert" class="weather-alert" style="display:none;"></div>
-    <header>
-        <h1>ShoreSquad</h1>
-        <p>Rally your crew, track weather, and hit the next beach cleanup!</p>
-        <a href="past-cleanups.html" class="btn-secondary" style="margin-top:1em;display:inline-block;">View Past Cleanups</a>
+    <nav id="navbar" class="navbar">
+        <div class="nav-left">
+            <span class="nav-logo">🌊</span>
+            <span class="nav-title">ShoreSquad</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#" class="nav-link active"><span class="nav-icon">🏠</span> Home</a></li>
+            <li><a href="#" class="nav-link"><span class="nav-icon">📅</span> Events</a></li>
+            <li><a href="#" class="nav-link"><span class="nav-icon">🗺️</span> Map</a></li>
+            <li><a href="#" class="nav-link"><span class="nav-icon">👥</span> My Crew</a></li>
+        </ul>
+        <div class="nav-toggle" id="nav-toggle">&#9776;</div>
+    </nav>
+
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Rally Your Crew. Clean Our Shores.</h1>
+            <p>Join ShoreSquad to track cleanups, weather, and make a real impact together!</p>
+            <a href="#upcoming" class="btn-primary">Join the Next Cleanup</a>
+        </div>
     </header>
-    <main>
-        <section id="map-section">
-                        <h2>Find a Cleanup</h2>
-                        <form id="registration-form" autocomplete="off">
-                            <div class="form-row">
-                                <label for="reg-name">Name</label>
-                                <input type="text" id="reg-name" name="name" required maxlength="40" placeholder="Your Name">
-                            </div>
-                            <div class="form-row">
-                                <label for="reg-email">Email</label>
-                                <input type="email" id="reg-email" name="email" required maxlength="60" placeholder="you@email.com">
-                            </div>
-                            <div class="form-row">
-                                <label for="reg-group">Group Size</label>
-                                <input type="number" id="reg-group" name="group" required min="1" max="99" placeholder="1">
-                            </div>
-                            <div class="form-row">
-                                <label for="reg-date">Preferred Date</label>
-                                <input type="date" id="reg-date" name="date" required>
-                            </div>
-                            <button type="submit" class="btn-primary">Sign Up</button>
-                            <div id="reg-success" class="reg-success" style="display:none;"></div>
-                        </form>
-                        <section id="volunteers-section">
-                            <h3>Volunteers Joined (<span id="volunteer-count">0</span>)</h3>
-                            <div id="volunteer-list"></div>
-                        </section>
-                        <section id="impact-section">
-                            <h3>Cleanup Impact</h3>
-                            <form id="impact-form" autocomplete="off">
-                                <label for="trash-weight">Add Trash Collected (kg):</label>
-                                <div class="impact-row">
-                                    <input type="number" id="trash-weight" min="0.1" step="0.1" placeholder="e.g. 2.5" required>
-                                    <button type="submit" class="btn-primary">Add to total</button>
-                                </div>
-                            </form>
-                            <div class="impact-progress-container">
-                                <div class="impact-progress-bar" id="impact-progress-bar">
-                                    <span class="impact-progress-label" id="impact-progress-label">0 / 100 kg</span>
-                                </div>
-                            </div>
-                            <div id="impact-celebration" class="impact-celebration" style="display:none;"></div>
-                        </section>
-                        <div id="map">
-                            <iframe
-                              title="Next Cleanup: Pasir Ris"
-                              src="https://www.google.com/maps?q=1.381497,103.955574&hl=en&z=16&output=embed"
-                              allowfullscreen
-                              loading="lazy"
-                              referrerpolicy="no-referrer-when-downgrade"
-                              style="border:0;width:100%;height:100%;min-height:300px;"
-                            ></iframe>
-                            <div class="map-pin-label">📍 Next Cleanup</div>
-                        </div>
-        </section>
-        <section id="weather-section">
-            <h2>Weather Tracker</h2>
-            <div id="weather" aria-live="polite">
-                <div class="weather-row">
-                    <div class="weather-item">
-                        <span class="weather-label">Temperature</span>
-                        <span class="weather-value" id="weather-temp">--</span>
-                        <span class="weather-unit">°C</span>
-                    </div>
-                    <div class="weather-item">
-                        <span class="weather-label">Wind</span>
-                        <span class="weather-value" id="weather-wind">--</span>
-                        <span class="weather-unit">km/h</span>
-                    </div>
-                </div>
-                <div class="weather-row">
-                    <div class="weather-item">
-                        <span class="weather-label">UV Index</span>
-                        <span class="weather-value" id="weather-uv">--</span>
-                    </div>
-                    <div class="weather-item">
-                        <span class="weather-label">Sky</span>
-                        <span class="weather-value" id="weather-sky">--</span>
-                    </div>
+
+    <section id="impactStats" class="impact-stats-section">
+        <div class="impact-stats-cards">
+            <div class="impact-stat-card">
+                <div class="impact-stat-icon">🗑</div>
+                <div class="impact-stat-value">2500</div>
+                <div class="impact-stat-label">Pounds Collected</div>
+            </div>
+            <div class="impact-stat-card">
+                <div class="impact-stat-icon">📍</div>
+                <div class="impact-stat-value">45</div>
+                <div class="impact-stat-label">Beaches Cleaned</div>
+            </div>
+            <div class="impact-stat-card">
+                <div class="impact-stat-icon">👥</div>
+                <div class="impact-stat-value">350</div>
+                <div class="impact-stat-label">Squad Members</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="main-grid-section" class="main-grid-section">
+        <div class="main-grid-cards">
+            <!-- Column A: Google Maps Panel -->
+            <div class="main-grid-card map-card">
+                <h3>Beach Cleanup Locations</h3>
+                <div class="map-embed-wrapper">
+                    <iframe src="https://www.google.com/maps/d/embed?mid=1Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw6Qw" width="100%" height="320" style="border:0; border-radius: 16px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-        </section>
-        <section id="crew-section">
-            <h2>Your Crew</h2>
-            <div id="crew-list"></div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 ShoreSquad. Eco-action made fun.</p>
-    </footer>
-    <script src="js/app.js"></script>
-</body>
-<!-- Tawk.to Live Chat Widget -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/your_property_id/1hxxxxxxx'; // Replace with your Tawk.to property ID
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-// Custom Tawk.to styling and position
-Tawk_API.onLoad = function(){
-    Tawk_API.setAttributes({
-        'welcomeMessage': '👋 Welcome to ShoreSquad! How can we help with your next cleanup?'
-    }, function(error){});
-    // Reposition widget with margin
-    var style = document.createElement('style');
-    style.innerHTML = `
-        #tawkchat-container, .tawk-min-container {
-            right: 18px !important;
-            bottom: 18px !important;
-            left: auto !important;
-            z-index: 9999 !important;
-        }
-        @media (max-width: 600px) {
-            #tawkchat-container, .tawk-min-container {
-                right: 8px !important;
-                bottom: 8px !important;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-};
+            <!-- Column B: Signup Box -->
+            <div class="main-grid-card signup-card">
+                <h3>Find a Cleanup</h3>
+                <form id="signupForm">
+                    <input type="text" id="signupName" name="name" placeholder="Name" required />
+                    <input type="email" id="signupEmail" name="email" placeholder="Email" required />
+                    <input type="date" id="signupDate" name="date" required />
+                    <input type="number" id="signupGroup" name="group" placeholder="Group Size" min="1" max="50" required />
+                    <button type="submit" class="btn-primary">Join Squad</button>
+                </form>
+            </div>
+            <!-- Column C: Weather Panel -->
+            <div class="main-grid-card weather-card">
+                <h3>Weather Conditions</h3>
+                <div id="weatherPanel">
+                    <div class="weather-row"><span class="weather-label">Temperature:</span> <span id="weatherTemp">--</span>°C</div>
+                    <div class="weather-row"><span class="weather-label">Wind Speed:</span> <span id="weatherWind">--</span> km/h</div>
+                    <div class="weather-row"><span class="weather-label">UV Index:</span> <span id="weatherUV">--</span></div>
+                    <div class="weather-row"><span class="weather-label">Sky:</span> <span id="weatherSky">--</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+<script>
+// Signup form localStorage + popup
+document.addEventListener('DOMContentLoaded', function() {
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const date = document.getElementById('signupDate').value;
+            const group = document.getElementById('signupGroup').value;
+            const signupData = { name, email, date, group };
+            let signups = JSON.parse(localStorage.getItem('shoreSquadSignups') || '[]');
+            signups.push(signupData);
+            localStorage.setItem('shoreSquadSignups', JSON.stringify(signups));
+            alert('Thank you for joining the squad! We look forward to seeing you at the cleanup.');
+            signupForm.reset();
+        });
+    }
+});
 </script>
+
+    <section id="upcoming-cleanups-section">
+        <h2 class="upcoming-title">Upcoming Cleanups</h2>
+        <div class="upcoming-bg">
+            <div class="upcoming-cards">
+                <!-- Cards will be rendered by JS -->
+            </div>
+        </div>
+    </section>
+    <script>
+        const cleanups = [
+            { date: "Jun 1", title: "Santa Monica Beach Cleanup", location: "Santa Monica Pier", time: "09:00 AM", members: 12 },
+            { date: "Jun 3", title: "Venice Beach Squad Action", location: "Venice Beach Boardwalk", time: "08:30 AM", members: 8 },
+            { date: "Jun 7", title: "Malibu Coast Conservation", location: "Malibu State Beach", time: "07:00 AM", members: 15 },
+        ];
+        function getAvatarLetter(idx) {
+            return String.fromCharCode(65 + idx % 26);
+        }
+        function renderUpcomingCleanups() {
+            const container = document.querySelector('.upcoming-cards');
+            container.innerHTML = '';
+            cleanups.forEach((ev, i) => {
+                container.innerHTML += `
+                    <div class="upcoming-card">
+                        <div class="upcoming-date-badge">${ev.date}</div>
+                        <div class="upcoming-card-content">
+                            <div class="upcoming-title-row">
+                                <span class="upcoming-card-title">${ev.title}</span>
+                            </div>
+                            <div class="upcoming-meta">
+                                <span class="upcoming-meta-item"><span class="upcoming-icon">&#128205;</span> ${ev.location}</span>
+                                <span class="upcoming-meta-item"><span class="upcoming-icon">&#128337;</span> ${ev.time}</span>
+                            </div>
+                            <div class="upcoming-avatars-row">
+                                <div class="upcoming-avatars">
+                                    ${Array(Math.min(ev.members, 5)).fill(0).map((_,j)=>`<div class="upcoming-avatar" style="background:#3D7DFF;">${getAvatarLetter(j)}</div>`).join('')}
+                                    ${ev.members > 5 ? `<div class="upcoming-avatar upcoming-avatar-more">+${ev.members-5}</div>` : ''}
+                                </div>
+                                <span class="upcoming-members-count">${ev.members} squad members</span>
+                            </div>
+                            <button class="upcoming-join-btn">Join Squad</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        renderUpcomingCleanups();
+    </script>
+
+    <section id="stats-section">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#1e90ff" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm2 3h14l-1.5 12.5a2 2 0 0 1-2 1.5H8.5a2 2 0 0 1-2-1.5L5 9zm5 2v7h2v-7h-2zm4 0v7h2v-7h-2zm-8 0v7h2v-7H6z"/></svg>
+            </div>
+            <div class="stat-value">2500</div>
+            <div class="stat-label">Pounds Collected</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#1e90ff" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+            </div>
+            <div class="stat-value">45</div>
+            <div class="stat-label">Beaches Cleaned</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#1e90ff" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V20h14v-3.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05C17.16 14.1 19 15.03 19 16.5V20h5v-3.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </div>
+            <div class="stat-value">350</div>
+            <div class="stat-label">Squad Members</div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stat-card">
+            <div class="stat-value" id="stat-pounds">0</div>
+            <div class="stat-label">Pounds Collected</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="stat-beaches">0</div>
+            <div class="stat-label">Beaches Cleaned</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="stat-members">0</div>
+            <div class="stat-label">Squad Members</div>
+        </div>
+    </section>
+
+    <section class="upcoming-section" id="upcoming">
+        <h2>Upcoming Cleanups</h2>
+        <div class="cleanup-cards">
+            <!-- Example Card -->
+            <div class="cleanup-card">
+                <div class="cleanup-date">Dec 10</div>
+                <div class="cleanup-info">
+                    <h3 class="cleanup-title">Pasir Ris Beach Sweep</h3>
+                    <div class="cleanup-meta">
+                        <span class="meta-item"><span class="icon">&#128205;</span> Pasir Ris Beach</span>
+                        <span class="meta-item"><span class="icon">&#128337;</span> 9:00 AM</span>
+                    </div>
+                    <div class="cleanup-avatars">
+                        <div class="avatar" title="Chloe">C</div>
+                        <div class="avatar" title="Alex">A</div>
+                        <div class="avatar" title="Sam">S</div>
+                        <div class="avatar avatar-more">+5</div>
+                    </div>
+                </div>
+                <button class="btn-secondary">Join Squad</button>
+            </div>
+            <!-- Add more .cleanup-card as needed -->
+        </div>
+    </section>
+
+    <script>
+        // Responsive nav toggle
+        document.getElementById('nav-toggle').onclick = function() {
+            document.querySelector('.nav-menu').classList.toggle('show');
+        };
+        // Example stats (replace with real data)
+        document.getElementById('stat-pounds').textContent = '320';
+        document.getElementById('stat-beaches').textContent = '12';
+        document.getElementById('stat-members').textContent = '48';
+    </script>
 </body>
 </html>
